@@ -1,4 +1,5 @@
 const gameBoard = (() => {
+  //*****************************************************************************
   // Creating variables for each div to check for winner later
   // There is most likely a better way to do this but can't think of anything atm
   const block1 = document.querySelector('#block1');
@@ -10,8 +11,7 @@ const gameBoard = (() => {
   const block7 = document.querySelector('#block7');
   const block8 = document.querySelector('#block8');
   const block9 = document.querySelector('#block9');
-  
-  
+  //****************************************************************************
   
   const markersArray = [{}];
   
@@ -25,7 +25,10 @@ const gameBoard = (() => {
         let blockId = block.id
         let chosenBlock = document.getElementById(blockId);
         let lastPlayer = markersArray[markersArray.length-1].name;
-        
+        //Conditionals for days..
+        if (chosenBlock.textContent !== ""){
+          return alert('Choose an empty block, ya filthy animal!');
+        };        
         if (lastPlayer === undefined || lastPlayer === 'player2') {
           gameBoard.addMarker(player1);
         } else if (lastPlayer === 'player1'){
@@ -34,21 +37,42 @@ const gameBoard = (() => {
         // Update last players' reference
         lastPlayer = markersArray[markersArray.length-1].name;
         
+        //Mark up the board
         if ((lastPlayer === 'player1' || lastPlayer === undefined) && chosenBlock.textContent === ""){
           chosenBlock.textContent = "X";
           chosenBlock.style.color = "darkred";
         } else if (lastPlayer === 'player2' && chosenBlock.textContent === "") {
           chosenBlock.textContent = "O";
           chosenBlock.style.color = "darkblue";
-        } else if (chosenBlock.textContent !== "") {
-          alert('Choose another block yo!');
-        };
+        };   
         
-        
-        
+        //Check for winner
+        //*****************************************************************************
+        //This is might be an abomination of code
+        //I am going to check for winner using if statements
+        //I understand this would've been easier had i used a table system...
+        if (block1.textContent !== "" && block1.textContent === block2.textContent && block1.textContent === block3.textContent){
+          console.log(`${block1.textContent} Wins!`);
+        } else if (block1.textContent !== "" && block1.textContent === block4.textContent && block1.textContent === block7.textContent){
+          console.log(`${block1.textContent} Wins!`);
+        } else if (block1.textContent !== "" && block1.textContent === block5.textContent && block1.textContent === block9.textContent){
+          console.log(`${block1.textContent} Wins!`);
+        } else if (block2.textContent !== "" && block2.textContent === block5.textContent && block2.textContent === block8.textContent){
+          console.log(`${block2.textContent} Wins!`);
+        } else if (block3.textContent !== "" && block3.textContent === block6.textContent && block3.textContent === block9.textContent){
+          console.log(`${block3.textContent} Wins!`);
+        } else if (block3.textContent !== "" && block3.textContent === block5.textContent && block3.textContent === block7.textContent){
+          console.log(`${block3.textContent} Wins!`);
+        } else if (markersArray.length >= 10) {
+          console.log('Tie!')
+        }
+        //*****************************************************************************
       })
     })
+    ///
   };
+  
+
   
   // Public
   const addMarker = (mark) => markersArray.push(mark);
@@ -66,12 +90,5 @@ const Player = (name, mark) => {
 
 const player1 = Player('player1', 'X');
 const player2 = Player('player2', 'O');
-
-
-
-
-
-// console.log(gameBoard)
-
 
 gameBoard.playGame();
