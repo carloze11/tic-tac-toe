@@ -171,6 +171,7 @@ const resetBtn = () => {
           winner.style.display = 'flex';
         } else if (markersArray.length >= 10) {
           winner.textContent = 'Tie!';
+          winner.style.color = 'purple';
           winner.removeAttribute('hidden');
           winner.style.display = 'flex';
         }
