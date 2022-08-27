@@ -25,8 +25,8 @@ const gameBoard = (() => {
   const getNames = () => {
     let btn = document.querySelector('.play-button');
     btn.addEventListener('click', () => {
-      player1 = Player(input1.value, 'X');
-      player2 = Player(input2.value, 'O');
+      player1 = Player(input1.value || 'Player1', 'X');
+      player2 = Player(input2.value || 'Player2', 'O');
       form.setAttribute('hidden', true);
     })
   }
