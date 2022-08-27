@@ -2,6 +2,9 @@ const gameBoard = (() => {
   //*****************************************************************************
   // Creating variables for each div to check for winner later
   // There is most likely a better way to do this but can't think of anything atm
+  const form = document.querySelector('.form');
+  const input1 = document.querySelector('#player1');
+  const input2 = document.querySelector('#player2');
   const winner = document.querySelector('#winner');
   const block1 = document.querySelector('#block1');
   const block2 = document.querySelector('#block2');
@@ -15,15 +18,29 @@ const gameBoard = (() => {
   //****************************************************************************
   
   const markersArray = [{}];
+  let player1 = "";
+  let player2 = "";
+  
+  //Get player names
+  const getNames = () => {
+    let btn = document.querySelector('.play-button');
+    btn.addEventListener('click', () => {
+      player1 = Player(input1.value, 'X');
+      player2 = Player(input2.value, 'O');
+      form.setAttribute('hidden', true);
+    })
+  }
   
   //Start and reset the game 
   const startBtn = () => {
   let btn = document.querySelector('.play');
-  let resetBtn = document.querySelector('.reset')
+  let resetBtn = document.querySelector('.reset');
   btn.addEventListener('click', () => {
     gameBoard.playGame();
-    btn.setAttribute('hidden', 'true')
-    resetBtn.removeAttribute('hidden')
+    btn.setAttribute('hidden', true);
+    resetBtn.removeAttribute('hidden');
+    form.removeAttribute('hidden');
+    getNames();
   })
 }
 
@@ -33,7 +50,6 @@ const resetBtn = () => {
     location.reload(false);
   })
 }
-  
   
   
   
@@ -183,8 +199,8 @@ const Player = (name, mark) => {
   return {name, mark}
 };
 
-const player1 = Player('cindy', 'X');
-const player2 = Player('eevee', 'O');
+// const player1 = Player('cindy', 'X');
+// const player2 = Player('eevee', 'O');
 
 
 

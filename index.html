@@ -9,9 +9,29 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
+  <div class="form" hidden>
+    <fieldset>
+      <legend>---Player Names---</legend>
+        <form action="">
+          <div>
+            <label for="player1" id="label-1">Player1:</label>
+              <input type="text" id="player1">
+          </div>
+        <div>
+          <label for="player2" id="label-2">Player2:</label>
+            <input type="text" id="player2">
+        </div>
+          <div>
+            <button class="play-button" type="button">Play</button>
+          </div>
+        </form>
+    </fieldset>
+  </div>
+  
   <div id="winner" hidden></div>
+  
   <div class="button">
-    <button type="button" class="play">Play</button>
+    <button type="button" class="play">Start</button>
     <button type="button" class="reset" hidden>Reset</button>
   </div>
   <div class="container">
